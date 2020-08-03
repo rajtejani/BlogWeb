@@ -1,0 +1,23 @@
+header{
+  background: #222;
+  color: #FFF;
+}
+
+
+.nav-link{
+  color: #FFF;
+}
+.nav-link:hover{
+  font-weight: 700;
+  color: #FFF;
+  transition: 0.13s linear;
+}
+
+
+footer{
+  background-color: #222;
+}
+
+.pointer{
+  cursor: pointer;
+}
