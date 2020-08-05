@@ -1,40 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {
+  useParams
+} from "react-router-dom";
 
 import BlogPostList from '../Blogs/BlogPostList';
 
-const FullBlog = () => {
-
+const FullBlog = ({ data }) => {
+  const { blog_id } = useParams();
+  const index = data.findIndex(blog => blog.blog_id === blog_id);
+  console.log('---- index----', index);
+  const blog = index > -1 ? data[index] : {};
+  const prevBlog = data[index - 1];
+  const nextBlog = data[index + 1];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
   return (
     <div className="row mt-3">
       <div className="col-12 my-3">
-        <h3 className="mb-0">What is Lorem Ipsum?</h3>
-        <h6 className="text-secondary">02 August 2020</h6>
+        <h3 className="mb-0">{blog.blog_heading}</h3>
+        <h6 className="text-secondary">{blog.blog_date && blog.blog_date.split("-").join(" ")}</h6>
       </div>
       <div className="col-12 justify-content-center d-flex">
-        <img className="img-responsive" alt="image" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" />
+        <img className="img-responsive" alt="image" src={blog.blog_image} />
       </div>
       <div classNam="col-12">
         <p className="px-5 my-3 text-justify">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of
-          type and scrambled it to make a type specimen book. It has
-          survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised
-          in the 1960s with the release of Letraset sheets containing
-          Lorem Ipsum passages, and more recently with desktop publishing
-          software like Aldus PageMaker including versions of Lorem Ipsum.
+          {blog.blog_description}
         </p>
       </div>
       <div className="col-12 my-5">
         <div className="row justify-content-between">
           <div className="col-5">
-            <h5>Prev</h5>
-            <BlogPostList index={32} />
+            {
+              prevBlog &&
+              <React.Fragment>
+                <h5>Prev</h5>
+                <BlogPostList data={prevBlog} index={32} />
+              </React.Fragment>
+            }
           </div>
           <div className="col-5">
-            <h5 className="text-right">Next</h5>
-            <BlogPostList index={40} />
+            { nextBlog &&
+              <React.Fragment>
+                <h5 className="text-right">Next</h5>
+                <BlogPostList data={nextBlog} index={40} />
+              </React.Fragment>}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 
 import Blogs from '../containers/Blogs';
@@ -6,8 +6,20 @@ import FullBlogView from '../containers/FullBlog';
 
 import './style.css';
 import BlogPostList from '../containers/Blogs/BlogPostList';
+const axios = require("axios");
 
 const HomeLayout = () => {
+  const [blogs, _setBlogsData] = useState([]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: 'https://playdevelopers.com/react/json/blogs',
+    })
+      .then(res => {
+        _setBlogsData(res.data);
+      })
+      .catch(error => console.log('------- error ---------', error))
+  }, [])
   return (
     <React.Fragment>
       <header>
@@ -47,8 +59,12 @@ const HomeLayout = () => {
           <div className="row">
             <div className="col-12 col-md-8">
               <Switch>
-                <Route exact path='/' component={Blogs} />
-                <Route path='/fullBlog' component={FullBlogView} />
+                <Route exact path='/'>
+                  <Blogs data={blogs} />
+                </Route>
+                <Route path='/:blog_id' >
+                  <FullBlogView data={blogs} />
+                  </Route>
               </Switch>
             </div>
             <div className="col-12 col-md-4">
@@ -59,8 +75,11 @@ const HomeLayout = () => {
                   </div>
                   <div>
                     {
-                      new Array(5).fill().map((d, i) =>
-                        <BlogPostList key={i} index={i} />)
+                      blogs.map((d, i) =>
+                        <BlogPostList
+                          key={i}
+                          index={i}
+                          data={d} />)
                     }
                   </div>
                 </div>
@@ -72,8 +91,11 @@ const HomeLayout = () => {
                   </div>
                   <div>
                     {
-                      new Array(5).fill().map((d, i) =>
-                        <BlogPostList index={i+10} />)
+                      blogs.map((d, i) =>
+                        <BlogPostList
+                          key={i}
+                          index={i}
+                          data={d} />)
                     }
                   </div>
                 </div>

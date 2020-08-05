@@ -4,15 +4,18 @@ import Pagination from 'react-js-pagination';
 import './style.css';
 import BlogPostCard from './BlogPostCard';
 
-const Blogs = () => {
+const Blogs = ({ data }) => {
   const [activePage, _setActivePage] = useState(1);
 
   return (
     <React.Fragment>
       <div className="row">
         {
-          new Array(10).fill().map((d, i) =>
-            <BlogPostCard key={i} index={i} />)
+          data.slice(activePage -1, 10).map((d, i) =>
+            <BlogPostCard 
+            key={i} 
+            index={i}
+            data={d} />)
         }
       </div>
       <div className="row justify-content-center">
@@ -26,7 +29,7 @@ const Blogs = () => {
           lastPageText='Last'
           activePage={activePage}
           itemsCountPerPage={10}
-          totalItemsCount={450}
+          totalItemsCount={data.length}
           pageRangeDisplayed={5}
           onChange={pageNumber => _setActivePage(pageNumber)}
         />
