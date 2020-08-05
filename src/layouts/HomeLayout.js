@@ -8,7 +8,7 @@ import './style.css';
 import BlogPostList from '../containers/Blogs/BlogPostList';
 const axios = require("axios");
 
-const HomeLayout = () => {
+const HomeLayout = ({ children }) => {
   const [blogs, _setBlogsData] = useState([]);
   useEffect(() => {
     axios({
@@ -58,14 +58,15 @@ const HomeLayout = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8">
-              <Switch>
+              {children}
+              {/* <Switch>
                 <Route exact path='/'>
                   <Blogs data={blogs} />
                 </Route>
                 <Route path='/:blog_id' >
                   <FullBlogView data={blogs} />
                   </Route>
-              </Switch>
+              </Switch> */}
             </div>
             <div className="col-12 col-md-4">
               <div className="row">

@@ -3,14 +3,13 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 
-import HomeLayout from './layouts/HomeLayout';
+import Routes from './routes';
+
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <HomeLayout />
-      </Router>
+      <Routes />
     </div>
   );
 }

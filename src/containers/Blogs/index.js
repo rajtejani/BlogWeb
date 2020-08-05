@@ -11,7 +11,7 @@ const Blogs = ({ data }) => {
     <React.Fragment>
       <div className="row">
         {
-          data.slice(activePage -1, 10).map((d, i) =>
+          data && data.slice(activePage -1, 10).map((d, i) =>
             <BlogPostCard 
             key={i} 
             index={i}
@@ -29,7 +29,7 @@ const Blogs = ({ data }) => {
           lastPageText='Last'
           activePage={activePage}
           itemsCountPerPage={10}
-          totalItemsCount={data.length}
+          totalItemsCount={data ? data.length : 0}
           pageRangeDisplayed={5}
           onChange={pageNumber => _setActivePage(pageNumber)}
         />
