@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import Blogs from '../containers/Blogs';
-import FullBlogView from '../containers/FullBlog';
 
 import './style.css';
+import Routes from '../routes';
 import BlogPostList from '../containers/Blogs/BlogPostList';
-const axios = require("axios");
 
 const HomeLayout = ({ children }) => {
-  const [blogs, _setBlogsData] = useState([]);
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: 'https://playdevelopers.com/react/json/blogs',
-    })
-      .then(res => {
-        _setBlogsData(res.data);
-      })
-      .catch(error => console.log('------- error ---------', error))
-  }, [])
+
+  const { blogs, isLoadingBLogs } = useSelector(state => ({
+    blogs: state.blogs,
+    isLoadingBLogs: state.isLoadingBLogs
+  }))
   return (
     <React.Fragment>
       <header>
@@ -55,55 +48,7 @@ const HomeLayout = ({ children }) => {
       </header>
 
       <main>
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-md-8">
-              {children}
-              {/* <Switch>
-                <Route exact path='/'>
-                  <Blogs data={blogs} />
-                </Route>
-                <Route path='/:blog_id' >
-                  <FullBlogView data={blogs} />
-                  </Route>
-              </Switch> */}
-            </div>
-            <div className="col-12 col-md-4">
-              <div className="row">
-                <div className="col-12 mb-4">
-                  <div className="">
-                    <h3>Recents</h3>
-                  </div>
-                  <div>
-                    {
-                      blogs.map((d, i) =>
-                        <BlogPostList
-                          key={i}
-                          index={i}
-                          data={d} />)
-                    }
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12">
-                  <div className="">
-                    <h3>Trending</h3>
-                  </div>
-                  <div>
-                    {
-                      blogs.map((d, i) =>
-                        <BlogPostList
-                          key={i}
-                          index={i}
-                          data={d} />)
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Routes />
       </main>
 
       <footer className="text-white py-2">
