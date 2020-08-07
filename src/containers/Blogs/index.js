@@ -3,8 +3,8 @@ import Pagination from 'react-js-pagination';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './style.css';
-import BlogPostList from './BlogPostList';
 import BlogPostCard from './BlogPostCard';
+import SideBarBlogs from './SideBarBlogs';
 
 import { getBlogsData } from '../../redux/actions'
 
@@ -49,38 +49,8 @@ const Blogs = () => {
               </div>
             </div>
             <div className="col-12 col-md-4">
-              <div className="row">
-                <div className="col-12 mb-4">
-                  <div className="">
-                    <h3>Recents</h3>
-                  </div>
-                  <div>
-                    {
-                      blogs.map((d, i) =>
-                        <BlogPostList
-                          key={i}
-                          index={i}
-                          data={d} />)
-                    }
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12">
-                  <div className="">
-                    <h3>Trending</h3>
-                  </div>
-                  <div>
-                    {
-                      blogs.map((d, i) =>
-                        <BlogPostList
-                          key={i}
-                          index={i}
-                          data={d} />)
-                    }
-                  </div>
-                </div>
-              </div>
+              <SideBarBlogs />
+              
             </div>
           </div>
         </div>

@@ -1,3 +1,6 @@
+.full-page{
+  height: calc(100vh - 96px);
+}
 .social-block a:first-child {
   margin-left: 0;
   padding-left: 0;
@@ -24,4 +27,7 @@
 }
 .social-block a:hover {
   background-color: #e1e1e1;
+}
+.lh-1-6{
+  line-height: 1.6;
 }

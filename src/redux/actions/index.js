@@ -20,3 +20,44 @@ export const getBlogsData = () => (dispatch) => {
       })
   })
 }
+const _fetchRecentBlogDataStart = () => ({ type: "FETCH_RECENT_BLOG_DATA_START"});
+const _fetchRecentBlogDataSuccess = (payload) => ({ type: "FETCH_RECENT_BLOG_DATA_SUCCESS", payload });
+const _fetchRecentBlogDataFail= () => ({ type: "FETCH_RECENT_BLOG_DATA_FAIL"});
+
+export const getRecentBlogsData = () => (dispatch) => {
+  dispatch(_fetchRecentBlogDataStart());
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "GET",
+      url: 'https://playdevelopers.com/react/json/recent',
+    })
+      .then(res => {
+        dispatch(_fetchRecentBlogDataSuccess(res.data));
+      })
+      .catch(error => {
+        console.log('------- error ---------', error);
+        dispatch(_fetchRecentBlogDataFail());
+      })
+  })
+}
+const _fetchTrendingBlogDataStart = () => ({ type: "FETCH_TRENDING_BLOG_DATA_START"});
+const _fetchTrendingBlogDataSuccess = (payload) => ({ type: "FETCH_TRENDING_BLOG_DATA_SUCCESS", payload });
+const _fetchTrendingBlogDataFail= () => ({ type: "FETCH_TRENDING_BLOG_DATA_FAIL"});
+
+export const getTrendingBlogsData = () => (dispatch) => {
+  dispatch(_fetchTrendingBlogDataStart());
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "GET",
+      url: 'https://playdevelopers.com/react/json/trending',
+    })
+      .then(res => {
+        dispatch(_fetchTrendingBlogDataSuccess(res.data));
+      })
+      .catch(error => {
+        console.log('------- error ---------', error);
+        dispatch(_fetchTrendingBlogDataFail());
+      })
+  })
+}
+

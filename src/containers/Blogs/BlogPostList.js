@@ -12,8 +12,8 @@ const BlogPostList = ({ index, data }) => {
           <img className="img-responsive w-100 h-auto" src={blog_image} />
         </div>
         <div className="col-8 px-2">
-          <h5 className="mb-0">{blog_heading}</h5>
-          <span className="text-secondary">{blog_date && blog_date.split('-').join(" ")}</span>
+          <h6 className="mb-0">{blog_heading}</h6>
+          <small className="text-secondary">{blog_date && blog_date.split('-').join(" ")}</small>
         </div>
       </div>
     </Link>
