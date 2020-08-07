@@ -8,12 +8,16 @@ import {
 
 import Blogs from './containers/Blogs';
 import FullBlog from './containers/FullBlog';
+import AboutUs from './containers/AboutUs';
+import ContactUs from './containers/ContactUs';
 
 const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Blogs} />
-      <Route path="/:blog_id" exact component={FullBlog} />
+      <Route path="/read-blog/:blog_id"  component={FullBlog} />
+      <Route path="/pages/about-us"  component={AboutUs} />
+      <Route path="/pages/contact-us"  component={ContactUs} />
     </Switch>
   );
 }

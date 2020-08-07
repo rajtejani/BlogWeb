@@ -33,13 +33,13 @@ const HomeLayout = ({ children }) => {
                   <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link className="nav-link">About</Link>
+                  <Link to="/pages/about-us" className="nav-link">About</Link>
                 </li>
                 <li className="nav-item px-md-4">
                   <Link className="nav-link">Privacy</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link className="nav-link">Contact</Link>
+                  <Link to="/pages/contact-us" className="nav-link">Contact</Link>
                 </li>
               </ul>
             </div>

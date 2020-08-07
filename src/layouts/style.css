@@ -8,8 +8,8 @@ header{
   color: #FFF;
 }
 .nav-link:hover{
-  font-weight: 700;
   color: #FFF;
+  scale: 1.5;  
   transition: 0.13s linear;
 }
 

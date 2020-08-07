@@ -13,7 +13,7 @@ const BlogPostCard = ({ index, data }) => {
             <div className="card">
 
               <div className="view overlay pointer">
-                <Link to={`/${blog.blog_id}`}>
+                <Link to={`/read-blog/${blog.blog_id}`}>
                   <img className="card-img-top" src={blog.blog_image}
                     alt="Card image cap" />
                   <a href="#!">
@@ -29,7 +29,7 @@ const BlogPostCard = ({ index, data }) => {
                   {blog.blog_meta_description}</p>
                 <div className="d-flex">
                   <span className="text-secondary">{blog.blog_date && blog.blog_date.split('-').join(" ")}</span>
-                  <span className="ml-auto"><Link to={`/${blog.blog_id}`}>View</Link></span>
+                  <span className="ml-auto"><Link to={`/read-blog/${blog.blog_id}`}>View</Link></span>
                 </div>
               </div>
             </div>
