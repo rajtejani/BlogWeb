@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import $ from 'jquery';
 import './style.css';
 import Routes from '../routes';
-import BlogPostList from '../containers/Blogs/BlogPostList';
 
 const HomeLayout = ({ children }) => {
 
@@ -13,6 +13,9 @@ const HomeLayout = ({ children }) => {
     blogs: state.blogs,
     isLoadingBLogs: state.isLoadingBLogs
   }))
+  const _onClick = () =>{
+    $(".collapse.navbar-collapse").animate({ height: 'toggle'}).toggleClass("show");
+  }
   return (
     <React.Fragment>
       <header>
@@ -22,8 +25,8 @@ const HomeLayout = ({ children }) => {
             <a className="d-xs-block d-md-none text-white font-weight-bold" href="javascript:void(0)">BlogMaster</a>
 
             <button className="navbar-toggler bg-dark text-white" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-              aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-              <i className="fa fa-bars"></i>
+              aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation" onClick={() => _onClick()}>
+              <FontAwesomeIcon icon={faBars} />
             </button>
 
             <div className="collapse navbar-collapse" id="basicExampleNav">
@@ -36,7 +39,7 @@ const HomeLayout = ({ children }) => {
                   <Link to="/pages/about-us" className="nav-link">About</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link className="nav-link">Privacy</Link>
+                  <Link to="/pages/privacy-policy" className="nav-link">Privacy</Link>
                 </li>
                 <li className="nav-item px-md-4">
                   <Link to="/pages/contact-us" className="nav-link">Contact</Link>

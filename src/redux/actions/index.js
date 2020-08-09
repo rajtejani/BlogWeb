@@ -4,14 +4,15 @@ const _fetchBlogDataStart = () => ({ type: "FETCH_BLOG_DATA_START"});
 const _fetchBlogDataSuccess = (payload) => ({ type: "FETCH_BLOG_DATA_SUCCESS", payload });
 const _fetchBlogDataFail= () => ({ type: "FETCH_BLOG_DATA_FAIL"});
 
-export const getBlogsData = () => (dispatch) => {
+export const getBlogsData = (activePage) => (dispatch) => {
   dispatch(_fetchBlogDataStart());
   return new Promise((resolve, reject) => {
     axios({
       method: "GET",
-      url: 'https://playdevelopers.com/react/json/blogs',
+      url: 'https://playdevelopers.com/react/json/blogs/',
     })
       .then(res => {
+        console.log('------- data---------', typeof res.data);
         dispatch(_fetchBlogDataSuccess(res.data));
       })
       .catch(error => {

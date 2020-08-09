@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faTwitter, faInstagram, faDribbble } from '@fortawesome/free-brands-svg-icons'
 import './style.css';
 
 const AboutUs = () => {
@@ -18,10 +20,10 @@ const AboutUs = () => {
               <div className="follow">
                 <h6>Follow us:</h6>
                 <div className="social-block">
-                  <a href="#"><i className="fa fa-facebook"></i></a>
-                  <a href="#"><i className="fa fa-twitter"></i></a>
-                  <a href="#"><i className="fa fa-instagram"></i></a>
-                  <a href="#"><i className="fa fa-dribbble"></i></a></div>
+                  <a href="#"><FontAwesomeIcon icon={faFacebookF} /></a>
+                  <a href="#"><FontAwesomeIcon icon={faTwitter} /></a>
+                  <a href="#"><FontAwesomeIcon icon={faInstagram} /></a>
+                  <a href="#"><FontAwesomeIcon icon={faDribbble} /></a></div>
               </div>
             </div>
           </div>

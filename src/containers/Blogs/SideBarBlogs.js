@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import BlogPostList from './BlogPostList';
 import { getRecentBlogsData, getTrendingBlogsData } from '../../redux/actions';
 
@@ -14,9 +15,9 @@ const SideBarBlogs = () => {
       recentBlogsData: state.recentBlogsData,
       trendingBlogsData: state.trendingBlogsData,
       isLoadingRecentBlogs: state.isLoadingRecentBlogs,
-      isLoadingTrendingBlogs: state.isLoadingTrendingBlogs
+      isLoadingRecentBlogs: state.isLoadingTrendingBlogs
     }))
-
+    console.log('---------- isLoadingRecentBlogs isLoadingRecentBlogs',isLoadingRecentBlogs, isLoadingRecentBlogs );
   useEffect(() => {
     dispacth(getRecentBlogsData());
     dispacth(getTrendingBlogsData());
@@ -31,8 +32,8 @@ const SideBarBlogs = () => {
           <div>
             {
               isLoadingRecentBlogs &&
-              <div className="my-5 py-5 text-center">
-                <i className=" fa fa-spin fa-circle-o-notch"></i>
+              <div className="col-12 text-center">
+                <FontAwesomeIcon className="fa-spin" icon={faCircleNotch} />
               </div>
             }
             {
@@ -51,10 +52,10 @@ const SideBarBlogs = () => {
             <h3>Trending</h3>
           </div>
           <div>
-          {
+            {
               isLoadingTrendingBlogs &&
-              <div className="my-5 py-5 text-center">
-                <i className=" fa fa-spin fa-circle-o-notch"></i>
+              <div className="col-12 text-center">
+                <FontAwesomeIcon className="fa-spin" icon={faCircleNotch} />
               </div>
             }
             {

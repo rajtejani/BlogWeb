@@ -4,6 +4,9 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+
 
 import SideBarBlogs from '../Blogs/SideBarBlogs';
 import BlogPostList from '../Blogs/BlogPostList';
@@ -36,8 +39,8 @@ const FullBlog = () => {
       <div className="row mt-3">
         {
           isLoadingBLogs &&
-          <div className="col-12 py-5">
-            <i className="fa fa-spin fa-cricle-o-notch py-5"></i>
+          <div className="col-12 text-center">
+            <FontAwesomeIcon className="fa-spin" icon={faCircleNotch} />
           </div>
         }
         <div className="col-12 col-md-8">
@@ -45,7 +48,7 @@ const FullBlog = () => {
             {
               index > -1 ?
                 <React.Fragment>
-                  <div className="col-12 my-3">
+                  <div className="col-12">
                     <h3 className="mb-0">{blog.blog_heading}</h3>
                     <h6 className="text-secondary">{blog.blog_date && blog.blog_date.split("-").join(" ")}</h6>
                   </div>

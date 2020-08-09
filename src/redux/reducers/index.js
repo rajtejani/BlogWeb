@@ -3,8 +3,8 @@ const initialState = {
   recentBlogsData: [],
   trendingBlogsData: [],
   isLoadingBLogs: false,
-  isLoadingRecentBLogs: false,
-  isLoadingTrendingBLogs: false,
+  isLoadingRecentBlogs: false,
+  isLoadingTrendingBlogs: false,
 };
 
 export default function rootreducer(state = initialState, action) {
@@ -16,17 +16,17 @@ export default function rootreducer(state = initialState, action) {
     case 'FETCH_BLOG_DATA_FAIL':
       return { ...state, isLoadingBLogs: true }
     case 'FETCH_RECENT_BLOG_DATA_START':
-      return { ...state, isLoadingRecentBLogs: true }
+      return { ...state, isLoadingRecentBlogs: true }
     case 'FETCH_RECENT_BLOG_DATA_SUCCESS':
-      return { ...state, recentBlogsData: action.payload, isLoadingRecentBLogs: false }
+      return { ...state, recentBlogsData: action.payload, isLoadingRecentBlogs: false }
     case 'FETCH_RECENT_BLOG_DATA_FAIL':
-      return { ...state, isLoadingRecentBLogs: true }
+      return { ...state, isLoadingRecentBlogs: true }
     case 'FETCH_TRENDING_BLOG_DATA_START':
-      return { ...state, isLoadingTrendingBLogs: true }
+      return { ...state, isLoadingTrendingBlogs: true }
     case 'FETCH_TRENDING_BLOG_DATA_SUCCESS':
-      return { ...state, trendingBlogsData: action.payload, isLoadingTrendingBLogs: false }
+      return { ...state, trendingBlogsData: action.payload, isLoadingTrendingBlogs: false }
     case 'FETCH_TRENDING_BLOG_DATA_FAIL':
-      return { ...state, isLoadingTrendingBLogs: true }
+      return { ...state, isLoadingTrendingBlogs: true }
     default: return state
   }
 }

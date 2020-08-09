@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt, faMobileAlt, faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 const ContactUs = () => {
@@ -10,14 +12,14 @@ const ContactUs = () => {
             <h3 className="contact-title mb-5">GET IN TOUCH</h3>
             <p className="contact-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
             <div className="contact-method">
-              <div className="contact-method__item"><i className="fa fa-map-marker"></i>
-                <p>5 South Main Street Los Angeles, ZZ-96110 USA</p>
+              <div className="contact-method__item"><FontAwesomeIcon icon={faMapMarkerAlt} />
+                <p className="my-auto">5 South Main Street Los Angeles, ZZ-96110 USA</p>
               </div>
-              <div className="contact-method__item"><i className="fa fa-mobile"></i>
-                <p>125-711-811   |   125-668-886</p>
+              <div className="contact-method__item"><FontAwesomeIcon icon={faMobileAlt} />
+                <p className="my-auto">125-711-811   |   125-668-886</p>
               </div>
-              <div className="contact-method__item"><i className="fa fa-headphones"></i>
-                <p>Support.hosting@gmail.com</p>
+              <div className="contact-method__item"><FontAwesomeIcon icon={faHeadphonesAlt} />
+                <p className="my-auto">Support.hosting@gmail.com</p>
               </div>
             </div>
           </div>

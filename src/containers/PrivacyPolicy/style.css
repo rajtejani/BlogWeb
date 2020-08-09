@@ -1,0 +1,16 @@
+h3{
+  margin-top: 30px !important;
+}
+p.p-text{
+  margin-left: 10px;
+}
+p.p-text::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background: #666;
+  left: 10px;
+  border-radius: 100%;
+  transform: translateY(7px);
+}
