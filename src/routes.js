@@ -15,11 +15,11 @@ import PrivacyPolicy from './containers/PrivacyPolicy';
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" exact component={Blogs} />
-      <Route path="/read-blog/:blog_id"  component={FullBlog} />
-      <Route path="/pages/about-us"  component={AboutUs} />
-      <Route path="/pages/contact-us"  component={ContactUs} />
-      <Route path="/pages/privacy-policy"  component={PrivacyPolicy} />
+      <Route path="/admin/" exact component={Blogs} />
+      <Route path="/admin/read-blog/:blog_id"  component={FullBlog} />
+      <Route path="/admin/about-us"  component={AboutUs} />
+      <Route path="/admin/contact-us"  component={ContactUs} />
+      <Route path="/admin/privacy-policy"  component={PrivacyPolicy} />
     </Switch>
   );
 }

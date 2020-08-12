@@ -17,7 +17,6 @@ const SideBarBlogs = () => {
       isLoadingRecentBlogs: state.isLoadingRecentBlogs,
       isLoadingRecentBlogs: state.isLoadingTrendingBlogs
     }))
-    console.log('---------- isLoadingRecentBlogs isLoadingRecentBlogs',isLoadingRecentBlogs, isLoadingRecentBlogs );
   useEffect(() => {
     dispacth(getRecentBlogsData());
     dispacth(getTrendingBlogsData());

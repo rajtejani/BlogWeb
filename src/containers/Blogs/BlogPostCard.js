@@ -9,11 +9,11 @@ const BlogPostCard = ({ index, data }) => {
     <div className="row">
       {
         blogs.map(blog =>
-          <div className="col-12 col-sm-6 my-2">
+          <div className="col-12 col-sm-6 my-2" key={blog.blog_id}>  
             <div className="card">
 
               <div className="view overlay pointer">
-                <Link to={`/read-blog/${blog.blog_id}`}>
+                <Link to={`/admin/read-blog/${blog.blog_id}`}>
                   <img className="card-img-top" src={blog.blog_image}
                     alt="Card image cap" />
                   <a href="#!">
@@ -29,7 +29,7 @@ const BlogPostCard = ({ index, data }) => {
                   {blog.blog_meta_description}</p>
                 <div className="d-flex">
                   <span className="text-secondary">{blog.blog_date && blog.blog_date.split('-').join(" ")}</span>
-                  <span className="ml-auto"><Link to={`/read-blog/${blog.blog_id}`}>View</Link></span>
+                  <span className="ml-auto"><Link to={`/admin/read-blog/${blog.blog_id}`}>View</Link></span>
                 </div>
               </div>
             </div>

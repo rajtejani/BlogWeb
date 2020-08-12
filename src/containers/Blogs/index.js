@@ -12,9 +12,10 @@ import { getBlogsData } from '../../redux/actions'
 
 const Blogs = () => {
   const [activePage, _setActivePage] = useState(1);
-  const { blogs, isLoadingBLogs } = useSelector(state => ({
+  const { blogs, isLoadingBLogs, totalBlogsCount } = useSelector(state => ({
     blogs: state.blogs,
-    isLoadingBLogs: state.isLoadingBLogs
+    isLoadingBLogs: state.isLoadingBLogs,
+    totalBlogsCount: state.totalBlogsCount
   }))
   const dispatch = useDispatch();
   useEffect(() => {
@@ -43,8 +44,8 @@ const Blogs = () => {
                 firstPageText='First'
                 lastPageText='Last'
                 activePage={activePage}
-                itemsCountPerPage={10}
-                totalItemsCount={blogs ? blogs.length : 0}
+                itemsCountPerPage={5}
+                totalItemsCount={totalBlogsCount}
                 pageRangeDisplayed={5}
                 onChange={pageNumber => _setActivePage(pageNumber)}
               />

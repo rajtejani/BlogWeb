@@ -33,16 +33,16 @@ const HomeLayout = ({ children }) => {
 
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item  pr-md-4 active">
-                  <Link to="/" className="nav-link">Home</Link>
+                  <Link to="/admin/" onClick={() => _onClick()} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link to="/pages/about-us" className="nav-link">About</Link>
+                  <Link to="/admin/about-us" onClick={() => _onClick()}  className="nav-link">About</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link to="/pages/privacy-policy" className="nav-link">Privacy</Link>
+                  <Link to="/admin/privacy-policy" onClick={() => _onClick()} className="nav-link">Privacy</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link to="/pages/contact-us" className="nav-link">Contact</Link>
+                  <Link to="/admin/contact-us" onClick={() => _onClick()} className="nav-link">Contact</Link>
                 </li>
               </ul>
             </div>

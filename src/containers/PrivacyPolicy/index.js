@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="container py-5">
       <div className="row justify-content-center">
-        <div className="col-12 col-sm-6 text-justify">
+        <div className="col-11 col-sm-10 col-md-8  text-justify">
           <h1 className="display-3">
             Privacy Policy
           </h1>
