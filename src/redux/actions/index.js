@@ -86,3 +86,70 @@ export const getSingleBlogData = (blog_id) => (dispatch) => {
       })
   })
 }
+
+
+
+const _fetchMtipsStart = () => ({ type: "FETCH_MTIP_BLOG_DATA_START" });
+const _fetchMtipsSuccess = (payload) => ({ type: "FETCH_MTIP_BLOG_DATA_SUCCESS", payload });
+const _fetchMtipsFail = () => ({ type: "FETCH_MTIP_BLOG_DATA_FAIL" });
+
+export const getMtipsData = (blog_id) => (dispatch) => {
+  dispatch(_fetchMtipsStart());
+  const data = { blog_id: blog_id };
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "GET",
+      url: 'https://playdevelopers.com/react/json/mtips',
+    }).then(res => {
+      dispatch(_fetchMtipsSuccess(res.data));
+    })
+      .catch(error => {
+        console.log('------- error ---------', error);
+        dispatch(_fetchMtipsFail());
+      })
+  })
+}
+
+const _fetchRtipsStart = () => ({ type: "FETCH_RTIP_BLOG_DATA_START" });
+const _fetchRtipsSuccess = (payload) => ({ type: "FETCH_RTIP_BLOG_DATA_SUCCESS", payload });
+const _fetchRtipsFail = () => ({ type: "FETCH_RTIP_BLOG_DATA_FAIL" });
+
+export const getRtipsData = (blog_id) => (dispatch) => {
+  dispatch(_fetchRtipsStart());
+  const data = { blog_id: blog_id };
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "GET",
+      url: 'https://playdevelopers.com/react/json/rtips',
+    }).then(res => {
+      dispatch(_fetchRtipsSuccess(res.data));
+    })
+      .catch(error => {
+        console.log('------- error ---------', error);
+        dispatch(_fetchRtipsFail());
+      })
+  })
+}
+
+const _fetchVtipStart = () => ({ type: "FETCH_VTIP_BLOG_DATA_START" });
+const _fetchVtipSuccess = (payload) => ({ type: "FETCH_VTIP_BLOG_DATA_SUCCESS", payload });
+const _fetchVtipFail = () => ({ type: "FETCH_VTIP_BLOG_DATA_FAIL" });
+
+export const getVtipData = (mr_id) => (dispatch) => {
+  dispatch(_fetchVtipStart());
+  const data = { mr_id: mr_id };
+  return new Promise((resolve, reject) => {
+    axios.post('https://playdevelopers.com/react/json/vtips',
+      qs.stringify(data), {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
+    }).then(res => {
+      dispatch(_fetchVtipSuccess(res.data));
+    })
+      .catch(error => {
+        console.log('------- error ---------', error);
+        dispatch(_fetchVtipFail());
+      })
+  })
+}

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import {
-  useParams,
-  useHistory,
   useLocation
 } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,27 +11,24 @@ import SideBarBlogs from '../Blogs/SideBarBlogs';
 import BlogPostList from '../Blogs/BlogPostList';
 import { getSingleBlogData } from '../../redux/actions';
 
+
 const FullBlog = () => {
   const { detailedBlogData, isLoadingDetailedBlogs } = useSelector(state => ({
     detailedBlogData: state.detailedBlogData,
     isLoadingDetailedBlogs: state.isLoadingDetailedBlogs,
   }))
-  const { blog_id } = useParams();
+  const location = useLocation();
+  const queryBlogId = parseInt(useLocation().search.replace(/[^0-9]/, ""));
+  const blog_id = location.state && location.state.blog_id ? location.state.blog_id : null;
   const { blog, prevBlog, nextBlog } = detailedBlogData;
 
-  const history = useHistory();
-  const location = useLocation();
-
-  console.log("--- blog ---", blog, blog_id);
   useEffect(() => {
-    if(blog)
-    location.pathname = blog.blog_slug;
     window.scrollTo(0, 0);
   })
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getSingleBlogData(blog_id));
-  }, []);
+    (queryBlogId || blog_id) && dispatch(getSingleBlogData(queryBlogId || blog_id));
+  }, [blog_id, queryBlogId]);
   return (
     <div className="container">
       <div className="row mt-3">

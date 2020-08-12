@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './style.css';
 
 const BlogPostList = ({ index, data }) => {
-  const { blog_heading, blog_image, blog_date, blog_id } = data;
+  const { blog_heading, blog_image, blog_date, blog_id, blog_slug } = data;
   return (
-    <Link to={`/admin/read-blog/${blog_id}`} className="no-underline">
+    <Link to={{
+      pathname: `/admin/read-blog/${blog_slug}`,
+      state: { blog_id }
+    }} className="no-underline">
       <div className="row my-2 bordered p-2 no-gutters pointer">
         <div className="col-4 image-container">
           <img className="img-responsive w-100 h-auto" src={blog_image} />

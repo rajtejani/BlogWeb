@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -8,13 +8,22 @@ import './style.css';
 import Routes from '../routes';
 
 const HomeLayout = ({ children }) => {
+  const location = useLocation();
 
+  const id = parseInt(location.search.replace(/[^0-9]/g, ""));
   const { blogs, isLoadingBLogs } = useSelector(state => ({
     blogs: state.blogs,
     isLoadingBLogs: state.isLoadingBLogs
   }))
-  const _onClick = () =>{
-    $(".collapse.navbar-collapse").animate({ height: 'toggle'}).toggleClass("show");
+  const _onClick = () => {
+    $(".collapse.navbar-collapse").toggleClass("show");
+  }
+
+  if (id) {
+    return <Redirect to={{
+      pathname: '/admin/read-blog/?' + id,
+      state: {blog_id: id}
+    }} />
   }
   return (
     <React.Fragment>
@@ -22,7 +31,7 @@ const HomeLayout = ({ children }) => {
         <div className="container">
           <nav className="navbar navbar-expand-md">
 
-            <a className="d-xs-block d-md-none text-white font-weight-bold" href="javascript:void(0)">BlogMaster</a>
+            <Link to="/admin/" className="d-xs-block d-md-none text-white font-weight-bold">BlogMaster</Link>
 
             <button className="navbar-toggler bg-dark text-white" type="button" data-toggle="collapse" data-target="#basicExampleNav"
               aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation" onClick={() => _onClick()}>
@@ -36,7 +45,7 @@ const HomeLayout = ({ children }) => {
                   <Link to="/admin/" onClick={() => _onClick()} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item px-md-4">
-                  <Link to="/admin/about-us" onClick={() => _onClick()}  className="nav-link">About</Link>
+                  <Link to="/admin/about-us" onClick={() => _onClick()} className="nav-link">About</Link>
                 </li>
                 <li className="nav-item px-md-4">
                   <Link to="/admin/privacy-policy" onClick={() => _onClick()} className="nav-link">Privacy</Link>
@@ -63,4 +72,4 @@ const HomeLayout = ({ children }) => {
   )
 }
 
-export default HomeLayout;
+export default React.memo(HomeLayout);
