@@ -1,14 +1,20 @@
-import React from "react";
-import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 // import './style.css';
 
-const Mtips = () => {
+import { getMtipsData } from '../../redux/actions';
+
+const Mtips = ({ showMore = true }) => {
 
   const { mtipsData } = useSelector(state => ({
     mtipsData: state.mtipsData
   }))
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMtipsData());
+  }, []);
   return (
     <div className="row mb-3">
       {
@@ -25,12 +31,13 @@ const Mtips = () => {
             </div>
           </div>
         )
-      }
-      <div className="col-12 text-center my-1">
-        <button type="button" className="btn btn-primary">
-          <Link to="/admin/rtips" className="text-white no-underline">Read More</Link>
-        </button>
-      </div>
+      }{
+        showMore &&
+        <div className="col-12 text-center my-1">
+          <button type="button" className="btn btn-primary">
+            <Link to="/admin/rtips" className="text-white no-underline">Read More</Link>
+          </button>
+        </div>}
     </div>
   );
 }

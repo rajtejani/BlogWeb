@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Mtips from '../Mtips';
+import SideBarBlogs from '../Blogs/SideBarBlogs';
 import { getVtipData } from '../../redux/actions';
 
 
@@ -12,87 +14,48 @@ const Vtips = () => {
   const { vtip } = useSelector(state => ({
     vtip: state.vtipData
   }))
-
+  let tips = vtip && vtip.tips ? vtip.tips : null;
+  console.log('-=-=-=- vtip -=-=-', vtip, tips)
   useEffect(() => {
     dispatch(getVtipData(mr_id));
   }, [mr_id])
+
   return (
     <div className="container full-page">
-      <div className="row justify-content-center">
-        <div class="bordered my-5">
-
+      <div className="row">
+        <div className="col-12 col-md-8">
           {
-            vtip &&
+            tips &&
             <React.Fragment>
-
-              <div className="row">
-                <div className="col text-right d-flex mt-auto justify-content-end">
-                  <label>Title</label>
-                </div>
-                <div className="col">
-                  <h3>{vtip.tips.mr_title}</h3>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>Slug</label>
-                </div>
-                <div className="col">
-                  <label>{vtip.tips.mr_slug}</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>Description</label>
-                </div>
-                <div className="col">
-                  <label>{vtip.tips.mr_description}</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>url</label>
-                </div>
-                <div className="col">
-                  <a target="_blank" href={vtip.tips.mr_url} >{vtip.tips.mr_url}</a>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>Token</label>
-                </div>
-                <div className="col">
-                  <a target="_blank" href={vtip.tips.mr_token}>{vtip.tips.mr_token}</a>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>Date</label>
-                </div>
-                <div className="col">
-                  <label>{vtip.tips.mr_date}</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>Time</label>
-                </div>
-                <div className="col">
-                  <label>{vtip.tips.mr_time}</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col text-right">
-                  <label>status</label>
-                </div>
-                <div className="col">
-                  <label>{vtip.tips.mr_status}</label>
-                </div>
-              </div>
-
+              <h3>{tips.mr_title}</h3>
+              <small>{tips.mr_date.split('-').join(" ")}&nbsp;{tips.mr_time}</small>
+              <p>{tips.mr_description}</p>
+              <a href={tips.mr_token} target="_blank" className="text-white no-underline btn btn-primary px-5 mb-3">Read</a>
             </React.Fragment>
-
           }
+          <p>Lorem Ipsum is simply dummy text of the printing
+          and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has
+          survived not only five centuries, but also the leap
+          into electronic typesetting, remaining essentially unchanged.</p>
+
+          <div className="my-4">
+            <Mtips showMore={false} />
+          </div>
+
+          <p>Lorem Ipsum is simply dummy text of the printing
+          and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has
+          survived not only five centuries, but also the leap
+          into electronic typesetting, remaining essentially unchanged.</p>
+
+        </div>
+        <div className="col-12 col-md-4">
+          <SideBarBlogs />
         </div>
       </div>
     </div>

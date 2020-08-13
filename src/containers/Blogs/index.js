@@ -9,11 +9,11 @@ import BlogPostCard from './BlogPostCard';
 import SideBarBlogs from './SideBarBlogs';
 import Mtips from '../Mtips';
 
-import { getBlogsData, getMtipsData } from '../../redux/actions'
+import { getBlogsData,  } from '../../redux/actions'
 
 const Blogs = () => {
   const [activePage, _setActivePage] = useState(1);
-  const { blogs, isLoadingBLogs, totalBlogsCount, mtipsData, state } = useSelector(state => ({
+  const { totalBlogsCount } = useSelector(state => ({
     totalBlogsCount: state.totalBlogsCount,
   }))
   const dispatch = useDispatch();
@@ -21,9 +21,7 @@ const Blogs = () => {
     dispatch(getBlogsData(activePage));
   }, [activePage]);
 
-  useEffect(() => {
-    dispatch(getMtipsData());
-  }, []);
+
   
   return (
     <React.Fragment>
